@@ -1,0 +1,17 @@
+parameters:
+
+services:
+    Luckyseven\Bundle\LuckysevenTagsBundle\Repository\EntityTagRepository:
+        tags: [ 'doctrine.repository_service' ]
+        arguments:
+            $registry: '@Doctrine\Common\Persistence\ManagerRegistry'
+
+    Luckyseven\Bundle\LuckysevenTagsBundle\Repository\TagRepository:
+        tags: [ 'doctrine.repository_service' ]
+        arguments:
+            $registry: '@Doctrine\Common\Persistence\ManagerRegistry'
+
+    Luckyseven\Bundle\LuckysevenTagsBundle\Service\LuckysevenTagsService:
+        arguments:
+            $entityManager: '@doctrine.orm.default_entity_manager'
+            $tagEntity: '%luckyseven_tags.tag_entity%'

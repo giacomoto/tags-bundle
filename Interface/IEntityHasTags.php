@@ -2,5 +2,6 @@
 
 namespace Luckyseven\Bundle\LuckysevenTagsBundle\Interface;
 
-interface EntityHasTagsInterface {
+interface IEntityHasTags {
+    public function getId(): int;
 }

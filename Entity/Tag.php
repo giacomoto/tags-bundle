@@ -2,10 +2,9 @@
 
 namespace Luckyseven\Bundle\LuckysevenTagsBundle\Entity;
 
-use App\Repository\TagRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: TagRepository::class)]
+#[ORM\MappedSuperclass]
 class Tag
 {
     #[ORM\Id]
@@ -16,7 +15,7 @@ class Tag
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $icon = null;
 
     #[ORM\Column(length: 255)]
@@ -44,7 +43,7 @@ class Tag
         return $this->icon;
     }
 
-    public function setIcon(string $icon): self
+    public function setIcon(?string $icon): self
     {
         $this->icon = $icon;
 
