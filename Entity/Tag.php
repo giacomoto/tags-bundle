@@ -3,9 +3,10 @@
 namespace Luckyseven\Bundle\LuckysevenTagsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Luckyseven\Bundle\LuckysevenTagsBundle\Interface\ITag;
 
 #[ORM\MappedSuperclass]
-class Tag
+class Tag implements ITag
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

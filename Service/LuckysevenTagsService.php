@@ -5,8 +5,8 @@ namespace Luckyseven\Bundle\LuckysevenTagsBundle\Service;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Luckyseven\Bundle\LuckysevenTagsBundle\Entity\EntityTag;
-use Luckyseven\Bundle\LuckysevenTagsBundle\Entity\Tag;
 use Luckyseven\Bundle\LuckysevenTagsBundle\Interface\IEntityHasTags;
+use Luckyseven\Bundle\LuckysevenTagsBundle\Interface\ITag;
 
 class LuckysevenTagsService
 {
@@ -19,13 +19,13 @@ class LuckysevenTagsService
         $this->entityTagRepository = $entityManager->getRepository(EntityTag::class);
     }
 
-    public function createTag(Tag $tag, $flush = true): Tag
+    public function createTag(ITag $tag, $flush = true): ITag
     {
         $this->tagRepository->save($tag, $flush);
         return $tag;
     }
 
-    public function deleteTag(Tag $tag, $flush = true): Tag
+    public function deleteTag(ITag $tag, $flush = true): ITag
     {
         $this->tagRepository->remove($tag, $flush);
         return $tag;
@@ -38,7 +38,7 @@ class LuckysevenTagsService
             : $this->tagRepository->findAll();
     }
 
-    public function addTag(IEntityHasTags $entity, Tag $tag): Tag
+    public function addTag(IEntityHasTags $entity, ITag $tag): ITag
     {
         $this->entityTagRepository->addTag($entity, $tag);
         return $tag;
@@ -51,7 +51,7 @@ class LuckysevenTagsService
         return $tags;
     }
 
-    public function removeTag(IEntityHasTags $entity, Tag $tag): Tag
+    public function removeTag(IEntityHasTags $entity, ITag $tag): ITag
     {
         $this->entityTagRepository->removeTag($entity, $tag);
         return $tag;

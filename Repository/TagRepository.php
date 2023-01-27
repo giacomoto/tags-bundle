@@ -4,18 +4,18 @@ namespace Luckyseven\Bundle\LuckysevenTagsBundle\Repository;
 
 use App\Entity\Property;
 use Luckyseven\Bundle\LuckysevenTagsBundle\Entity\EntityTag;
-use Luckyseven\Bundle\LuckysevenTagsBundle\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Luckyseven\Bundle\LuckysevenTagsBundle\Interface\IEntityHasTags;
+use Luckyseven\Bundle\LuckysevenTagsBundle\Interface\ITag;
 
 /**
  * @extends ServiceEntityRepository<Tag>
  *
- * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
- * @method Tag|null findOneBy(array $criteria, array $orderBy = null)
- * @method Tag[]    findAll()
- * @method Tag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ITag|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ITag|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ITag[]    findAll()
+ * @method ITag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class TagRepository extends ServiceEntityRepository
 {
@@ -24,7 +24,7 @@ class TagRepository extends ServiceEntityRepository
         parent::__construct($registry, $entityClass);
     }
 
-    public function save(Tag $entity, bool $flush = false): void
+    public function save(ITag $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -33,7 +33,7 @@ class TagRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Tag $entity, bool $flush = false): void
+    public function remove(ITag $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
